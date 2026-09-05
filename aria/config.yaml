@@ -1,0 +1,33 @@
+# Aria - Home Assistant add-on manifest.
+#
+# The program is a single static Go binary with the web app embedded, shipped
+# prebuilt per architecture in bin/, so installing never compiles anything.
+name: Aria
+version: "2.0.0"
+slug: aria
+description: Full-body 3D talking avatar for your Assist pipeline
+arch:
+  - amd64
+  - aarch64
+  - armv7
+init: false
+# /data is the add-on's persistent storage: settings, the HA token, uploaded
+# models and the generated certificate all survive restarts and updates.
+ports:
+  8420/tcp: 8420
+  8421/tcp: 8421
+ports_description:
+  8420/tcp: Web app over HTTP (typing works, the microphone does not)
+  8421/tcp: Web app over HTTPS (the microphone needs this one)
+map:
+  - ssl:ro
+options:
+  ssl: false
+  certfile: fullchain.pem
+  keyfile: privkey.pem
+schema:
+  ssl: bool
+  certfile: str
+  keyfile: str
+webui: https://[HOST]:[PORT:8421]
+watchdog: http://[HOST]:[PORT:8420]/api/index.php?action=ping

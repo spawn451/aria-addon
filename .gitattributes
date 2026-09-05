@@ -1,0 +1,3 @@
+# The supervisor clones this on Linux: shell scripts and manifests must stay LF.
+* text=auto eol=lf
+aria/bin/* binary
