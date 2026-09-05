@@ -3,7 +3,7 @@
 # The program is a single static Go binary with the web app embedded, shipped
 # prebuilt per architecture in bin/, so installing never compiles anything.
 name: Aria
-version: "2.0.0"
+version: "2.0.1"
 slug: aria
 description: Full-body 3D talking avatar for your Assist pipeline
 arch:
@@ -11,6 +11,14 @@ arch:
   - aarch64
   - armv7
 init: false
+# Ingress: Aria opens from the sidebar inside Home Assistant's own HTTPS page,
+# with no port, certificate or proxy configuration at all. The frontend uses
+# app-relative URLs throughout, so it works unchanged under the ingress prefix.
+ingress: true
+ingress_port: 8420
+ingress_stream: true
+panel_icon: mdi:account-voice
+panel_title: Aria
 # /data is the add-on's persistent storage: settings, the HA token, uploaded
 # models and the generated certificate all survive restarts and updates.
 ports:
