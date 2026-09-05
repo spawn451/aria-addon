@@ -3,7 +3,7 @@
 # The program is a single static Go binary with the web app embedded, shipped
 # prebuilt per architecture in bin/, so installing never compiles anything.
 name: Aria
-version: "2.0.5"
+version: "2.0.6"
 slug: aria
 description: Full-body 3D talking avatar for your Assist pipeline
 arch:
